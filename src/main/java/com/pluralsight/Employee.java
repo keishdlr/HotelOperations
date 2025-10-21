@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import java.util.Scanner;
+
 public class Employee {
     //Store and calculate payroll
     private int employeeID;
@@ -7,6 +9,7 @@ public class Employee {
     private String department;
     private double payRate;
     private double hoursWorked;
+    Scanner myScanner = new Scanner(System.in);
 
     public Employee(int employeeID, String name, String department, double payRate, double hoursWorked) {
         this.employeeID = employeeID;
@@ -68,5 +71,18 @@ public class Employee {
     public double getOverTimeHours(){
          double getOverTimeHours = hoursWorked - getRegularHours();
         return getOverTimeHours();
+    }
+    public double punchIN(){
+
+        System.out.println("What time are you punchingIN");
+        double punchIn = myScanner.nextDouble();
+        System.out.println("You signed in at " + punchIn);
+        return punchIn;
+    }
+    public double punchOut(){
+        System.out.println("What time are you punchingIN");
+        double punchOut = myScanner.nextDouble();
+        System.out.println("You signed out at " + punchOut);
+        return punchOut;
     }
 }
