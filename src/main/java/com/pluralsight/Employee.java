@@ -8,17 +8,65 @@ public class Employee {
     private double payRate;
     private double hoursWorked;
 
+    public Employee(String employeeID, String name, String department, double payRate, double hoursWorked) {
+        this.employeeID = employeeID;
+        this.name = name;
+        this.department = department;
+        this.payRate = payRate;
+        this.hoursWorked = hoursWorked;
+    }
+
+    public String getEmployeeID() {
+        return employeeID;
+    }
+
+    public void setEmployeeID(String employeeID) {
+        this.employeeID = employeeID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public double getPayRate() {
+        return payRate;
+    }
+
+    public void setPayRate(double payRate) {
+        this.payRate = payRate;
+    }
+
+    public double getHoursWorked() {
+        return hoursWorked;
+    }
+
+    public void setHoursWorked(double hoursWorked) {
+        this.hoursWorked = hoursWorked;
+    }
+
     //derived getters
     public double getTotalPay(){
-       double getTotalPay() = payRate * hoursWorked;
+        double getTotalPay = payRate * hoursWorked;
         return getTotalPay();
     }
+    // max hours worked 40
     public double getRegularHours(){
-
-        return getRegularHours();
+        return Math.min (hoursWorked, 40);
     }
     public double getOverTimeHours(){
-         double getOverTimeHours() = hoursWorked - getRegularHours();
+         double getOverTimeHours = hoursWorked - getRegularHours();
         return getOverTimeHours();
     }
 }
