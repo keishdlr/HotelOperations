@@ -1,30 +1,31 @@
 package com.pluralsight;
 
-import java.util.Scanner;
+import java.time.LocalDateTime;
 
 public class Employee {
-    //Store and calculate payroll
-    private int employeeID;
-    private  String name;
     private String department;
     private double payRate;
     private double hoursWorked;
-    Scanner myScanner = new Scanner(System.in);
+    private int employeeId;
+    private String name;
+    private double startTime;
 
-    public Employee(int employeeID, String name, String department, double payRate, double hoursWorked) {
-        this.employeeID = employeeID;
+    //the constructor to help us create an employee
+    public Employee(int employeeId, String name, String department, double payRate, double hoursWorked) {
+        this.employeeId = employeeId;
         this.name = name;
         this.department = department;
         this.payRate = payRate;
         this.hoursWorked = hoursWorked;
     }
 
-    public int getEmployeeID() {
-        return employeeID;
+    //getters and setters
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getName() {
@@ -60,40 +61,69 @@ public class Employee {
     }
 
     //derived getters
-    public double getTotalPay(){
-        double getTotalPay = payRate * hoursWorked;
-        return getTotalPay();
-    }
-    // max hours worked 40
-    public double getRegularHours(){
-        return Math.min (hoursWorked, 40);
-    }
-    public double getOverTimeHours(){
-         double getOverTimeHours = hoursWorked - getRegularHours();
-        return getOverTimeHours();
-    }
-    public double punchIn(){
+    public double getTotalPay() {
 
-        System.out.println("What time are you punchingIn");
-        double punchIn = myScanner.nextDouble();
-        System.out.println("You signed in at " + punchIn);
-        return punchIn;
+        //calculate regular and overtime pay assuming 1.5 the pay rate for overtime.
+        //that was not in the instructions
+        double regularPay = this.getRegularHours() * this.getPayRate();
+        double overTimePay = this.getOvertimeHours() * this.getPayRate() * 1.5;
+
+        return regularPay + overTimePay;
     }
-    public double punchOut(){
-        System.out.println("What time are you punchingIN");
-        double punchOut = myScanner.nextDouble();
-        System.out.println("You signed out at " + punchOut);
-        hoursWorked = punchOut - punchIn();
-        return punchOut;
+
+    public double getRegularHours() {
+
+        if( this.getHoursWorked() > 40){
+            return 40;
+        }
+
+        return this.getHoursWorked();
+    }
+
+    public double getOvertimeHours() {
+        if( this.getHoursWorked() > 40){
+            return this.getHoursWorked() - 40;
+        }
+        return 0;
+    }
+
+    //punch-in method to capture start time
+    //I need to store this so I can use it's value in punch-out
+    public void punchIn(double time){
+            this.startTime = time;
+    }
+
+    public void punchOut(double time){
+            this.hoursWorked += time - this.startTime;
+    }
+    //overloaded punch in and punch out methods
+    public void punchIn(){
+        LocalDateTime now = LocalDateTime.now();
+        double currentTime = now.getHour() + (now.getMinute() / 60.0);
+        System.out.println(currentTime);
+    }
+
+    public void punchOut(){
+        LocalDateTime now = LocalDateTime.now();
+        double currentTime = now.getHour() + (now.getMinute() / 60.0);
+        System.out.println(currentTime);
+    }
+
+    public void punchTimeCard(double punchInTime, double punchOutTime){
+            this.punchIn(punchInTime);
+             this.punchOut(punchOutTime);
     }
     @Override
     public String toString() {
         return "Employee{" +
-                "ID = " + employeeID +
+                "ID = " + employeeId +
                 ", name = '" + name + '\'' +
                 ", department = '" + department + '\'' +
                 ", payRate = " + payRate +
                 ", hoursWorked = " + hoursWorked +
+                ", totalPay = " + getTotalPay() +
                 '}';
     }
 }
+
+

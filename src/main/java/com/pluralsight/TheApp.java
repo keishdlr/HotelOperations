@@ -11,5 +11,6 @@ public class TheApp {
         //Testing the reservation
         Reservation reservation001 = new Reservation("double", 2,false);
         System.out.println(reservation001);
+
     }
 }
