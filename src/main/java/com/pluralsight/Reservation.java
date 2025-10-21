@@ -20,10 +20,6 @@ public class Reservation {
         return RoomType;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
     public int getNumOfNights() {
         return numOfNights;
     }
@@ -36,26 +32,40 @@ public class Reservation {
         this.numOfNights = numOfNights;
     }
 
-    public void setWeekend(boolean weekend) {
-        isWeekend = weekend;
+    public double getPrice() {
+        //
+        // Price is 139 if it is a king
+        // Price is 124 if it's a double
+        // if(this.getRoomType().equalsIgnoreCase("king")){
+        //     return 139;
+        // }else{
+        //            return 124;
+        //  }
+            return this.getRoomType().equalsIgnoreCase("king") ? 139 : 124;
     }
-    public double getReservationTotal() {
-        Switch (RoomType){
-        case double:
-            price = 124.00;
-            if (isWeekend == true){
-                reservationTotal = ( price * .10) * numOfNights;}
-            else {
-                reservationTotal = price * numOfNights;}
-            break;
-        case king:
-            price = 139.00;
-        if (isWeekend == true){
-            reservationTotal = ( price * .10) * numOfNights;}
-        else {
-            reservationTotal = price * numOfNights;}
-            break;
 
-        return reservationTotal;
-    }}
+    public double getReservationTotal() {
+
+       // the total is the price * the number of nights
+        // if it is the weekend then the price is increased by 10%
+        double total = this.getNumOfNights() * this.getPrice();
+
+        //handle the weekend increase
+        if (this.isWeekend()) {
+            total += total + (total * .1);
+            total = total + (total * .1);
+        }
+
+        return total;
+    }
+
+    public boolean isWeekend() {
+        return isWeekend;
+    }
+
+    public void setWeekend(boolean weekend) {
+        this.isWeekend = weekend;
+    }
 }
+
+
