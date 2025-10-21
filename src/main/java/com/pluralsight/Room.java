@@ -72,5 +72,15 @@ public class Room {
             return false;
         }
     }
+    public boolean cleanRoom() {
+        if (!isOccupied){
+            isDirty = true;
+            isOccupied = false;
+            return true;
+        } else {
+            System.out.println("Room cannot be cleaned");
+            return false;
+        }
+    }
 }
 
