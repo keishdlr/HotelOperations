@@ -49,5 +49,28 @@ public class Room {
             return true;
         }
         return false;
-    }}
+    }
+    //check in works if room is not already occupied
+    // if its occupied then it will fail to check in and will print room is occupied
+    public boolean checkIn() {
+        if (!isOccupied) {
+            isDirty = true;
+            isOccupied = true;
+            return true;
+        } else {
+            System.out.println("Room is occupied");
+            return false;
+        }
+    }
+    public boolean checkOut(){
+        if (isOccupied) {
+            isDirty = true;
+            isOccupied = false;
+            return true;
+        }else {
+            System.out.println("Not checked out");
+            return false;
+        }
+    }
+}
 
