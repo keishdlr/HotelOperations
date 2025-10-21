@@ -19,7 +19,7 @@ public class Employee {
         return regularHours();
     }
     public double overTimeHours(){
-
+         double overTimeHours() = hoursWorked - 40;
         return overTimeHours();
     }
 }
