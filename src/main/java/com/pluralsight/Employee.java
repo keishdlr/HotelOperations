@@ -72,9 +72,9 @@ public class Employee {
          double getOverTimeHours = hoursWorked - getRegularHours();
         return getOverTimeHours();
     }
-    public double punchIN(){
+    public double punchIn(){
 
-        System.out.println("What time are you punchingIN");
+        System.out.println("What time are you punchingIn");
         double punchIn = myScanner.nextDouble();
         System.out.println("You signed in at " + punchIn);
         return punchIn;
@@ -83,6 +83,17 @@ public class Employee {
         System.out.println("What time are you punchingIN");
         double punchOut = myScanner.nextDouble();
         System.out.println("You signed out at " + punchOut);
+        hoursWorked = punchOut - punchIn();
         return punchOut;
+    }
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "ID = " + employeeID +
+                ", name = '" + name + '\'' +
+                ", department = '" + department + '\'' +
+                ", payRate = " + payRate +
+                ", hoursWorked = " + hoursWorked +
+                '}';
     }
 }

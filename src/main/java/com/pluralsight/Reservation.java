@@ -63,6 +63,14 @@ public class Reservation {
     public void setWeekend(boolean weekend) {
         this.isWeekend = weekend;
     }
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                " room Type = " + RoomType +
+                ", number of nights = " + numOfNights +
+                ", total = " + getReservationTotal() +
+                '}';
+    }
 }
 
 
