@@ -7,19 +7,18 @@ public class Employee {
     private String department;
     private double payRate;
     private double hoursWorked;
-    private double totalPay;
 
     //derived getters
-    public double totalPay(){
-        totalPay = payRate * hoursWorked;
-        return totalPay();
+    public double getTotalPay(){
+       double getTotalPay() = payRate * hoursWorked;
+        return getTotalPay();
     }
-    public double regularHours(){
+    public double getRegularHours(){
 
-        return regularHours();
+        return getRegularHours();
     }
-    public double overTimeHours(){
-         double overTimeHours() = hoursWorked - 40;
-        return overTimeHours();
+    public double getOverTimeHours(){
+         double getOverTimeHours() = hoursWorked - getRegularHours();
+        return getOverTimeHours();
     }
 }
