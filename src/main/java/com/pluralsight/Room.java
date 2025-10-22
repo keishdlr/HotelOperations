@@ -6,9 +6,8 @@ public class Room {
     private boolean isOccupied;
     private boolean isDirty;
 
-    public Room(int numOfBeds, double price, boolean isOccupied, boolean isDirty) {
+    public Room(int numOfBeds, boolean isOccupied, boolean isDirty) {
         this.numOfBeds = numOfBeds;
-        this.price = price;
         this.isOccupied = isOccupied;
         this.isDirty = isDirty;
     }
@@ -56,9 +55,10 @@ public class Room {
         if (!isOccupied) {
             isDirty = true;
             isOccupied = true;
+            System.out.println("Successfully checked in");
             return true;
         } else {
-            System.out.println("Room is occupied");
+            System.out.println("cannot check in");
             return false;
         }
     }
@@ -66,6 +66,7 @@ public class Room {
         if (isOccupied) {
             isDirty = true;
             isOccupied = false;
+            System.out.println("Successful check out");
             return true;
         }else {
             System.out.println("Not checked out");
@@ -76,6 +77,7 @@ public class Room {
         if (!isOccupied){
             isDirty = true;
             isOccupied = false;
+            System.out.println("Room is now clean");
             return true;
         } else {
             System.out.println("Room cannot be cleaned");

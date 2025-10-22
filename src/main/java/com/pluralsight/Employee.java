@@ -88,7 +88,6 @@ public class Employee {
     }
 
     //punch-in method to capture start time
-    //I need to store this so I can use it's value in punch-out
     public void punchIn(double time){
             this.startTime = time;
     }
@@ -107,12 +106,14 @@ public class Employee {
         LocalDateTime now = LocalDateTime.now();
         double currentTime = now.getHour() + (now.getMinute() / 60.0);
         System.out.println(currentTime);
+        this.hoursWorked +=  currentTime - this.startTime;
     }
 
     public void punchTimeCard(double punchInTime, double punchOutTime){
             this.punchIn(punchInTime);
              this.punchOut(punchOutTime);
     }
+
     @Override
     public String toString() {
         return "Employee{" +
