@@ -19,6 +19,11 @@ public class Employee {
         this.hoursWorked = hoursWorked;
     }
 
+    public Employee(String name) {
+        this.name = name;
+    }
+
+
     //getters and setters
     public int getEmployeeId() {
         return employeeId;
@@ -96,17 +101,19 @@ public class Employee {
             this.hoursWorked += time - this.startTime;
     }
     //overloaded punch in and punch out methods
-    public void punchIn(){
+    public double punchIn(){
         LocalDateTime now = LocalDateTime.now();
         double currentTime = now.getHour() + (now.getMinute() / 60.0);
         System.out.println(currentTime);
+        return currentTime;
     }
 
-    public void punchOut(){
+    public double punchOut(){
         LocalDateTime now = LocalDateTime.now();
         double currentTime = now.getHour() + (now.getMinute() / 60.0);
         System.out.println(currentTime);
         this.hoursWorked +=  currentTime - this.startTime;
+        return currentTime;
     }
 
     public void punchTimeCard(double punchInTime, double punchOutTime){
